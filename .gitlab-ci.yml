@@ -1,0 +1,30 @@
+image: python:latest
+
+stages:
+  - build
+  #- test
+  - deploy
+
+build-package:
+  stage: build
+  only:
+    - development
+    - qa
+    - main
+  artifacts:
+    untracked: true
+  script:
+    - pip install -U build twine
+    - python -m build
+
+upload:
+  stage: deploy
+  only:
+    - development
+    - qa
+    - main
+  dependencies:
+    - build-package
+  script:
+    - pip install -U build twine
+    - TWINE_PASSWORD=${CI_JOB_TOKEN} TWINE_USERNAME=gitlab-ci-token python -m twine upload --repository-url ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi dist/* --verbose

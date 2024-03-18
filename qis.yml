@@ -1,0 +1,14 @@
+name: qis
+channels:
+  - conda-forge
+dependencies:
+  - black
+  - ipykernel
+  - pandas
+  - psycopg2-binary
+  - sqlalchemy
+  - statsmodels
+  - ipython-sql
+  - scikit-learn
+  - hiredis
+prefix: /home/jovyan/.conda/envs/qis

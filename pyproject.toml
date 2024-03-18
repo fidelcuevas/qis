@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61.0", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qis"
+dynamic = ["version"]
+authors = [
+  { name="Fidel Cuevas", email="fidel@sqis.io" },
+]
+description = "QIS"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+  "pandas>=2.0.0",
+  "sqlalchemy==2.0.16",
+  "redis>=4.6.0",
+  "hiredis>=2.2.3",
+  "pyarrow==12.0.1",
+  "kubernetes==12.0.1",
+  "psycopg2-binary==2.9.6"
+]
+
+[project.urls]
+"Homepage" = "https://gitlab.sqis.io/QRD/qis"
+"Bug Tracker" = "https://gitlab.sqis.io/QRD/qis/-/issues"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+
+[tool.setuptools.package-data]
+"*" = ["*.properties"]
+
+[tool.setuptools_scm]
